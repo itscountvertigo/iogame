@@ -33,6 +33,9 @@ function setup() {
   posX = 0;
   posY = 0;
 
+  //posRasX = 0;
+  //posRasY = 0;
+
   for (var i = 0; i < coinNum; i++) {
     append(coinsX, random(-2000, 2000));
     append(coinsY, random(-2000, 2000));
@@ -47,7 +50,7 @@ function setup() {
 }  
 
 function draw() {
-  background(100);
+  background(200);
   raycast(width/2, height/2, mouseX, mouseY)
   //console.log("x = ", raycastX, "y = ", raycastY)
 
@@ -71,10 +74,16 @@ function draw() {
     posRasX += 50;
   }
 
-  /* for (var i = 0; i < 21; i++) {
+  /*for (var i = 0; i < 21; i++) { // grid tekenen/bewegen
+    for (var j = 0; j < 21; i++) {
     fill(255, 0, 0);
-    rect((i * 50) - posRasX, (i * 50) - posRasY, 50, 50);
+    rect((i * 50) - posRasX, (j * 50) - posRasY, 50, 50);
+    }
   } */
+
+  for (horizontalSpacing = 0; horizontalSpacing < width; i += 50) {
+    line()
+  }
 
   for (var i = 0; i < coinNum; i++) {
     fill(coinColor[i][0], coinColor[i][1], coinColor[i][2]);
@@ -92,7 +101,7 @@ function draw() {
       enemyY[i] = int(random(-2000, 2000) + posY);
       eaten += 1;
       playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; //sorry voor deze abomination van een regel code, luuk's fout
-      enemyradius[i]=int(random(50, 150));
+      enemyradius[i] = int(random(50, 150));
     }
 
     if(dist(500, 500, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[i] / 2 && enemyRadius[i] > playerRadius) {
