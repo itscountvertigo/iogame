@@ -35,18 +35,18 @@ function setup() {
   posX = 0;
   posY = 0;
 
-  //posRasX = 0;
-  //posRasY = 0;
+  posRasX = 0;
+  posRasY = 0;
   for (var i = 0; i < coinNum; i++) {
     append(coinsX, random(-2000, 2000));
     append(coinsY, random(-2000, 2000));
     append(coinColor, [random(255), random(255), random(255)]);
+    append(enemyRadius, int(random(50, 150)));
   }
   for (var i = 0; i < enemyNum; i++) {
     append(enemyX, random(-2000, 2000));
     append(enemyY, random(-2000, 2000));
     append(enemyColor, [random(255), random(255), random(255)]);
-    append(enemyRadius, int(random(50, 150)));
   }
 }  
 
@@ -59,24 +59,25 @@ function draw() {
   posX -= raycastY * speed;
   posY -= raycastX * speed;
 
-  posRasX -= raycastY * speed;
   posRasY -= raycastX * speed;
-
+  posRasX -= raycastY * speed;
+  
   if (posRasX > 50) {
-    posRasY -= 50;
-  }
-  if (posRasY > 50) {
     posRasX -= 50;
   }
   if (posRasX < 0) {
-    posRasY += 50;
-  }
-  if (posRasY < 0) {
     posRasX += 50;
   }
-
-  for (var i = 0; i < 13; i ++) { // grid tekenen/bewegen
-    for (var j = 0; j < 13; j ++) {
+  if (posRasY > 50) {
+    posRasY -= 50;
+  }
+  if (posRasY < 0) {
+    posRasY += 50;
+  }
+  //rect(50-posRasX,50-posRasY,50,50);
+  for (var i = 0; i < (width/50)+1; i ++) { // grid tekenen/bewegen
+    for (var j = 0; j < (height/50)+1; j ++) {
+      fill(255)
       rect((i*50)-posRasX, (j*50)-posRasY, 50, 50);
     }
   } 
@@ -93,7 +94,7 @@ function draw() {
     if (dist(width/2, height/2, coinsX[i] - posX, coinsY[i] - posY) < playerRadius / 2) {
       coinsX[i] = int(random(-2000, 2000) + posX);
       coinsY[i] = int(random(-2000, 2000) + posY);
-      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((coinsRadius / 2) * (coinsRadius / 2)) * Math.PI)) / Math.PI) * 2;
+      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((coinsRadius / 2) * (coinsRadius / 2)) * Math.PI)) / Math.PI) * 2; //sorry voor deze abomination van een regel code, luuk's fout
     }
   }
 
@@ -101,13 +102,13 @@ function draw() {
     fill(enemyColor[i][0], enemyColor[i][1], enemyColor[i][2]);
     circle(enemyX[i] - posX, enemyY[i] - posY, enemyRadius[i]);
     fill(0);
-    text(i, enemyX[i] - posX, enemyY[i] - posY)
+    text(i, enemyX[i] - posX, enemyY[i] - posY);
   }
   for (var i = 0; i < enemyNum; i++) {  
     if (dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < playerRadius / 2 && playerRadius > enemyRadius[i]) {
       enemyX[i] = int(random(-2000, 2000) + posX);
       enemyY[i] = int(random(-2000, 2000) + posY);
-      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2;
+      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; //sorry voor deze abomination van een regel code, luuk's fout
       enemyRadius[i] = int(random(50, 150));
     }
   }
@@ -115,6 +116,7 @@ function draw() {
     if(dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[i] / 2 && enemyRadius[i] > playerRadius) {
       posX = 0;
       posY = 0;
+      enemyRadius[i] = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; //sorry voor deze abomination van een regel code, luuk's fout
       playerRadius = 50;
     }
   }
