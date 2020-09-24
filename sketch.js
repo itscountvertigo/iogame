@@ -40,13 +40,13 @@ function setup() {
   for (var i = 0; i < coinNum; i++) {
     append(coinsX, random(-2000, 2000));
     append(coinsY, random(-2000, 2000));
-    append(coinColor, [random(255), random(255), random(255)])
-    
+    append(coinColor, [random(255), random(255), random(255)]);
   }
   for (var i = 0; i < enemyNum; i++) {
     append(enemyX, random(-2000, 2000));
     append(enemyY, random(-2000, 2000));
-    append(enemyColor, [random(255), random(255), random(255)])
+    append(enemyColor, [random(255), random(255), random(255)]);
+    append(enemyRadius, int(random(50, 150)));
   }
 }  
 
