@@ -16,6 +16,7 @@ var toobig = 125;
 var coinNum = 300;
 var coinsX = [];
 var coinsY = [];
+var coinsRadius = 20;
 
 var coinColor = [];
 
@@ -28,6 +29,7 @@ var enemyRadius = [];
 var enemyColor = [];
 
 function setup() {
+  background(200)
   createCanvas(width, height);
 
   posX = 0;
@@ -35,7 +37,6 @@ function setup() {
 
   //posRasX = 0;
   //posRasY = 0;
-
   for (var i = 0; i < coinNum; i++) {
     append(coinsX, random(-2000, 2000));
     append(coinsY, random(-2000, 2000));
@@ -74,20 +75,26 @@ function draw() {
     posRasX += 50;
   }
 
-  /*for (var i = 0; i < 21; i++) { // grid tekenen/bewegen
-    for (var j = 0; j < 21; i++) {
-    fill(255, 0, 0);
-    rect((i * 50) - posRasX, (j * 50) - posRasY, 50, 50);
+  for (var i = 0; i < 13; i ++) { // grid tekenen/bewegen
+    for (var j = 0; j < 13; j ++) {
+      rect((i*50)-posRasX, (j*50)-posRasY, 50, 50);
     }
-  } */
+  } 
 
-  for (horizontalSpacing = 0; horizontalSpacing < width; i += 50) {
+/*  for (horizontalSpacing = 0; horizontalSpacing < width; i += 50) {
     line()
-  }
+  }*/
 
   for (var i = 0; i < coinNum; i++) {
     fill(coinColor[i][0], coinColor[i][1], coinColor[i][2]);
-    circle(coinsX[i] - posX, coinsY[i] - posY, 40);
+    circle(coinsX[i] - posX, coinsY[i] - posY, coinsRadius);
+  }
+  for (var i = 0; i < coinNum; i++) {
+    if (dist(width/2, height/2, coinsX[i] - posX, coinsY[i] - posY) < playerRadius / 2) {
+      coinsX[i] = int(random(-2000, 2000) + posX);
+      coinsY[i] = int(random(-2000, 2000) + posY);
+      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((coinsRadius / 2) * (coinsRadius / 2)) * Math.PI)) / Math.PI) * 2;
+    }
   }
 
   for (var i = 0; i < enemyNum; i++) {
@@ -95,25 +102,33 @@ function draw() {
     circle(enemyX[i] - posX, enemyY[i] - posY, enemyRadius[i]);
     fill(0);
     text(i, enemyX[i] - posX, enemyY[i] - posY)
-    
-    if (dist(500, 500, enemyX[i] - posX, enemyY[i] - posY) < playerRadius / 2 && playerRadius > enemyRadius[i]) {
+  }
+  for (var i = 0; i < enemyNum; i++) {  
+    if (dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < playerRadius / 2 && playerRadius > enemyRadius[i]) {
       enemyX[i] = int(random(-2000, 2000) + posX);
       enemyY[i] = int(random(-2000, 2000) + posY);
-      eaten += 1;
-      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; //sorry voor deze abomination van een regel code, luuk's fout
-      enemyradius[i] = int(random(50, 150));
+      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2;
+      enemyRadius[i] = int(random(50, 150));
     }
-
-    if(dist(500, 500, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[i] / 2 && enemyRadius[i] > playerRadius) {
+  }
+  for (var i = 0; i < enemyNum; i++) {
+    if(dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[i] / 2 && enemyRadius[i] > playerRadius) {
       posX = 0;
       posY = 0;
       playerRadius = 50;
     }
-
-    if (dist(500, 500, enemyX[i] - posX, enemyY[i] - posY) > 3000) {
+  }
+  for (var i = 0; i < enemyNum; i++) {
+    if (dist(width/2, width/2, enemyX[i] - posX, enemyY[i] - posY) > 2000) {
       enemyX[i] = int(random(-2000, 2000) + posX);
       enemyY[i] = int(random(-2000, 2000) + posY);
       enemyRadius[i] = int(random(50, 150));
+    }
+  }
+  for (var i = 0; i < coinNum; i++) {
+    if (dist(width/2, width/2, coinsX[i] - posX, coinsY[i] - posY) > 2000) {
+      coinsX[i] = int(random(-2000, 2000) + posX);
+      coinsY[i] = int(random(-2000, 2000) + posY);;
     }
   }
 
