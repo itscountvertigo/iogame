@@ -77,17 +77,28 @@ function draw() { // this function loops every frame
 
   for (var i = 0; i < (width/50)+1; i ++) { // drawing/moving grid
     for (var j = 0; j < (height/50)+1; j ++) {
+      strokeWeight(1);
       stroke(200); // light gray lines
       fill(255);
-      rect((i*50)-posRasX, (j*50)-posRasY, 50, 50); // draws a lot of rectangles as a grid
+      rect((i * 50) - posRasX, (j * 50) - posRasY, 50, 50); // draws a lot of rectangles as a grid
     }
   }
 
   for (var i = 0; i < coinNum; i++) { // drawing coins
-    stroke(0); // reset stroke color to 0, otherwise it would stay on 200 (from grid function)
+    var coinColorDark = [coinColor[i][0] - 30, coinColor[i][1] - 30, coinColor[i][2] - 30]; // darken original coin color to make slightly darker border
+
+    for (var j = 0; j < coinColorDark; j++) { // making sure none of the coinColorDark values go below zero
+      if (coinColorDark[j] < 0) {
+        coinColorDark[j] = 0;
+      }
+    }
+
+    strokeWeight(5);
+    stroke(coinColorDark); // apply coinColorDark, this makes the border of the circle a slightly darker version of the original for style purposes
     fill(coinColor[i][0], coinColor[i][1], coinColor[i][2]);
     circle(coinsX[i] - posX, coinsY[i] - posY, coinsRadius);
   }
+
   for (var i = 0; i < coinNum; i++) { // eating coins
     if (dist(width/2, height/2, coinsX[i] - posX, coinsY[i] - posY) < playerRadius / 2) {
       coinsX[i] = int(random(-2000, 2000) + posX);
@@ -97,6 +108,16 @@ function draw() { // this function loops every frame
   }
 
   for (var i = 0; i < enemyNum; i++) { // drawing enemies with circle()
+    var enemyColorDark = [enemyColor[i][0] - 30, enemyColor[i][1] - 30, enemyColor[i][2] - 30]; // darken original enemy color to make slightly darker border
+
+    for (var j = 0; j < enemyColorDark; j++) { // making sure none of the enemyColorDark values go below zero
+      if (enemyColorDark[j] < 0) {
+        enemyColorDark[j] = 0;
+      }
+    }
+
+    strokeWeight(5);
+    stroke(enemyColorDark); // apply enemyColorDark, this makes the border of the circle a slightly darker version of the original for style purposes
     fill(enemyColor[i][0], enemyColor[i][1], enemyColor[i][2]);
     circle(enemyX[i] - posX, enemyY[i] - posY, enemyRadius[i]);
     fill(0);
@@ -136,7 +157,19 @@ function draw() { // this function loops every frame
     }
   }
 
-  fill(0, 255, 0);
+  var playerColor = [0, 255, 0];
+
+  var playerColorDark = [playerColor[0] - 30, playerColor[1] - 30, playerColor[2] - 30];
+
+  for (var j = 0; j < playerColorDark; j++) { // making sure none of the playerColorDark values go below zero
+    if (playerColorDark[j] < 0) {
+      playerColorDark[j] = 0;
+    }
+  }
+
+  strokeWeight(5);
+  stroke(playerColorDark);
+  fill(playerColor);
   circle((width/2), (height/2), playerRadius);
-  //console.log(posX, posY)
+  console.log(posX, posY)
 }
