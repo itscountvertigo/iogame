@@ -171,5 +171,5 @@ function draw() { // this function loops every frame
   stroke(playerColorDark);
   fill(playerColor);
   circle((width/2), (height/2), playerRadius);
-  console.log(posX, posY)
+  //console.log(posX, posY)
 }
