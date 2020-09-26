@@ -119,6 +119,7 @@ function draw() { // this function loops every frame
 
   for (var i = 0; i < enemyNum; i++) { // drawing enemies with circle()
     var enemyColorDark = [enemyColor[i][0] - 30, enemyColor[i][1] - 30, enemyColor[i][2] - 30]; // darken original enemy color to make slightly darker border
+
     for (var j = 0; j < enemyColorDark; j++) { // making sure none of the enemyColorDark values go below zero
       if (enemyColorDark[j] < 0) {
         enemyColorDark[j] = 0;
