@@ -7,6 +7,8 @@ var posX;
 var posY;
 var posRasX;
 var posRasY;
+var posDrawX;
+var posDrawY;
 var playerRadius = 50;
 var multi = 2;
 var toobig = 125;
@@ -119,7 +121,6 @@ function draw() { // this function loops every frame
 
   for (var i = 0; i < enemyNum; i++) { // drawing enemies with circle()
     var enemyColorDark = [enemyColor[i][0] - 30, enemyColor[i][1] - 30, enemyColor[i][2] - 30]; // darken original enemy color to make slightly darker border
-
     for (var j = 0; j < enemyColorDark; j++) { // making sure none of the enemyColorDark values go below zero
       if (enemyColorDark[j] < 0) {
         enemyColorDark[j] = 0;
@@ -134,7 +135,7 @@ function draw() { // this function loops every frame
     text(i, enemyX[i] - posX, enemyY[i] - posY); // show i on top of enemy
   }
 
-  for (var i = 0; i < enemyNum; i++) {  
+  for (var i = 0; i < enemyNum; i++) {  // eat enemies
     if (dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < playerRadius / 2 && playerRadius > enemyRadius[i]) {
       enemyX[i] = int(random(-2000, 2000) + posX);
       enemyY[i] = int(random(-2000, 2000) + posY);
@@ -145,9 +146,10 @@ function draw() { // this function loops every frame
 
   for (var i = 0; i < enemyNum; i++) { // respawn
     if(dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[i] / 2 && enemyRadius[i] > playerRadius) {
+      enemyRadius[i] = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // kuno and luuk made this to increase player size by volume
+      alert("You dead boy");
       posX = 0;
       posY = 0;
-      enemyRadius[i] = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // kuno and luuk made this to increase player size by volume
       playerRadius = 50;
     }
   }
