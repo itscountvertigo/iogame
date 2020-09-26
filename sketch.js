@@ -13,13 +13,13 @@ var playerRadius = 50;
 var multi = 2;
 var toobig = 125;
 
-// coin variables/arrays
-var coinNum = 300;
-var coinsX = [];
-var coinsY = [];
-var coinsRadius = 20;
+// food variables/arrays
+var foodNum = 300;
+var foodX = [];
+var foodY = [];
+var foodRadius = 20;
 
-var coinColor = [];
+var foodColor = [];
 
 // enemy variables/arrays
 var enemyNum = 10;
@@ -38,12 +38,13 @@ function setup() {
 
   posRasX = 0;
   posRasY = 0;
-  for (var i = 0; i < coinNum; i++) { // add random values to coin arrays (random x, y, color and radius)
-    append(coinsX, random(-2000, 2000));
-    append(coinsY, random(-2000, 2000));
-    append(coinColor, [random(255), random(255), random(255)]); // makes this an array of arrays
-    append(enemyRadius, int(random(50, 150))); // thx cas
+
+  for (var i = 0; i < foodNum; i++) { // add random values to food arrays (random x, y, color and radius)
+    append(foodX, random(-2000, 2000));
+    append(foodY, random(-2000, 2000));
+    append(foodColor, [random(255), random(255), random(255)]); // makes this an array of arrays
   }
+  
   for (var i = 0; i < enemyNum; i++) { // add random values to enemy arrays (random x, y and color)
     append(enemyX, random(-2000, 2000));
     append(enemyY, random(-2000, 2000));
@@ -86,72 +87,57 @@ function draw() { // this function loops every frame
     }
   }
 
-  for (var i = 0; i < coinNum; i++) { // drawing coins
-    var coinColorDark = [coinColor[i][0] - 30, coinColor[i][1] - 30, coinColor[i][2] - 30]; // darken original coin color to make slightly darker border
-
-    for (var j = 0; j < coinColorDark; j++) { // making sure none of the coinColorDark values go below zero
-      if (coinColorDark[j] < 0) {
-        coinColorDark[j] = 0;
+  for (var i = 0; i < foodNum; i++) { // FOOD LOOP
+    drawFood(foodX[i], foodY[i], foodRadius, foodColor[i][0], foodColor[i][1], foodColor[i][2]); // draw food
+  }
+  for (var i = 0; i < foodNum; i++) { // FOOD LOOP
+    if (dist(width/2, height/2, foodX[i] - posX, foodY[i] - posY) < playerRadius / 2) { // check if food is eaten by player
+      foodX[i] = int(random(-2000, 2000) + posX);
+      foodY[i] = int(random(-2000, 2000) + posY);
+      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((foodRadius / 2) * (foodRadius / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
+    }
+  }
+  for (var j = 0; j < enemyNum; j++) { // check if food is eaten by enemy
+    if (dist(enemyX[j] - posX, enemyY[j] - posY, foodX[i] - posX, foodY[i] - posY) < enemyRadius[j] / 2) {
+      foodX[i] = int(random(-2000, 2000) + posX);
+      foodY[i] = int(random(-2000, 2000) + posY);
+      enemyRadius[j] = sqrt((((((enemyRadius[j] / 2) * (enemyRadius[j] / 2)) * Math.PI) + ((foodRadius / 2) * (foodRadius / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
+      //print(j)
       }
     }
 
-    strokeWeight(5);
-    stroke(coinColorDark); // apply coinColorDark, this makes the border of the circle a slightly darker version of the original for style purposes
-    fill(coinColor[i][0], coinColor[i][1], coinColor[i][2]);
-    circle(coinsX[i] - posX, coinsY[i] - posY, coinsRadius);
-  }
-
-  for (var i = 0; i < coinNum; i++) { // eating coins
-    if (dist(width/2, height/2, coinsX[i] - posX, coinsY[i] - posY) < playerRadius / 2) {
-      coinsX[i] = int(random(-2000, 2000) + posX);
-      coinsY[i] = int(random(-2000, 2000) + posY);
-      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((coinsRadius / 2) * (coinsRadius / 2)) * Math.PI)) / Math.PI) * 2; // kuno and luuk made this to increase player size by volume
-    }
-  }
-  for (var i = 0; i < coinNum; i++) { // eating coins
-    for (var j = 0; j < enemyNum; j++) {
-      if (dist(enemyX[j] - posX, enemyY[j] - posY, coinsX[i] - posX, coinsY[i] - posY) < enemyRadius[j] / 2) {
-        coinsX[i] = int(random(-2000, 2000) + posX);
-        coinsY[i] = int(random(-2000, 2000) + posY);
-        enemyRadius[j] = sqrt((((((enemyRadius[j] / 2) * (enemyRadius[j] / 2)) * Math.PI) + ((coinsRadius / 2) * (coinsRadius / 2)) * Math.PI)) / Math.PI) * 2; // kuno and luuk made this to increase player size by volume
-        //print(j)
-      }
-    }
-  }
-
-  for (var i = 0; i < enemyNum; i++) { // drawing enemies with circle()
-    var enemyColorDark = [enemyColor[i][0] - 30, enemyColor[i][1] - 30, enemyColor[i][2] - 30]; // darken original enemy color to make slightly darker border
-    for (var j = 0; j < enemyColorDark; j++) { // making sure none of the enemyColorDark values go below zero
-      if (enemyColorDark[j] < 0) {
-        enemyColorDark[j] = 0;
+  for (var i = 0; i < foodNum; i++) { // despawn and respawn food if they are too far awaw
+    if (dist(width/2, width/2, foodX[i] - posX, foodY[i] - posY) > 2000) {
+      foodX[i] = int(random(-2000, 2000) + posX);
+      foodY[i] = int(random(-2000, 2000) + posY);;
       }
     }
 
-    strokeWeight(5);
-    stroke(enemyColorDark); // apply enemyColorDark, this makes the border of the circle a slightly darker version of the original for style purposes
-    fill(enemyColor[i][0], enemyColor[i][1], enemyColor[i][2]);
-    circle(enemyX[i] - posX, enemyY[i] - posY, enemyRadius[i]);
-    fill(0);
-    text(i, enemyX[i] - posX, enemyY[i] - posY); // show i on top of enemy
-  }
+  for (var i = 0; i < enemyNum; i++) {  // ENEMY LOOP
+    drawEnemies(enemyX[i], enemyY[i], enemyRadius[i], enemyColor[i][0], enemyColor[i][1], enemyColor[i][2]);
 
-  for (var i = 0; i < enemyNum; i++) {  // eat enemies
-    if (dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < playerRadius / 2 && playerRadius > enemyRadius[i]) {
+    if (dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < playerRadius / 2 && playerRadius > enemyRadius[i]) { // check if enemy is eaten by player
       enemyX[i] = int(random(-2000, 2000) + posX);
       enemyY[i] = int(random(-2000, 2000) + posY);
-      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // kuno and luuk made this to increase player size by volume
-      enemyRadius[i] = int(random(50, 150));
+      playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
     }
   }
-
-  for (var i = 0; i < enemyNum; i++) { // respawn
-    if(dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[i] / 2 && enemyRadius[i] > playerRadius) {
-      enemyRadius[i] = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // kuno and luuk made this to increase player size by volume
+  for (var j = 0; j < enemyNum; j++) { // check if enemy is eaten by other enemy
+      if (dist(enemyX[j] - posX, enemyY[j] - posY, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[j] / 2) {
+        foodX[i] = int(random(-2000, 2000) + posX);
+        foodY[i] = int(random(-2000, 2000) + posY);
+        enemyRadius[j] = sqrt((((((enemyRadius[j] / 2) * (enemyRadius[j] / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
+        //print(j)
+        }
+      }
+  for (var i = 0; i < enemyNum; i++) { 
+    if(dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[i] / 2 && enemyRadius[i] > playerRadius) { // check if player is being eaten by enemy (RESPAWN!)
+      enemyRadius[i] = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
       alert("You dead boy");
       posX = 0;
       posY = 0;
-      playerRadius = 50;
-    }
+      playerRadius[i] = 50;
+    } 
   }
 
   for (var i = 0; i < enemyNum; i++) { // despawn and respawn enemies if they are too far away
@@ -162,15 +148,7 @@ function draw() { // this function loops every frame
     }
   }
 
-  for (var i = 0; i < coinNum; i++) { // despawn and respawn coins if they are too far awaw
-    if (dist(width/2, width/2, coinsX[i] - posX, coinsY[i] - posY) > 2000) {
-      coinsX[i] = int(random(-2000, 2000) + posX);
-      coinsY[i] = int(random(-2000, 2000) + posY);;
-    }
-  }
-
   var playerColor = [0, 255, 0];
-
   var playerColorDark = [playerColor[0] - 30, playerColor[1] - 30, playerColor[2] - 30];
 
   for (var j = 0; j < playerColorDark; j++) { // making sure none of the playerColorDark values go below zero
