@@ -49,6 +49,7 @@ function setup() {
     append(enemyX, random(-2000, 2000));
     append(enemyY, random(-2000, 2000));
     append(enemyColor, [random(255), random(255), random(255)]); // makes this an array of arrays
+    append(enemyRadius, random(50, 150));
   }
 }  
 
@@ -122,10 +123,10 @@ function draw() { // this function loops every frame
       playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
     }
   }
-  for (var j = 0; j < enemyNum; j++) { // check if enemy is eaten by other enemy
+  for (var j = 0; j < enemyNum; j++) { // check if enemy is eaten by other enemy 
       if (dist(enemyX[j] - posX, enemyY[j] - posY, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[j] / 2) {
-        foodX[i] = int(random(-2000, 2000) + posX);
-        foodY[i] = int(random(-2000, 2000) + posY);
+        enemyX[i] = int(random(-2000, 2000) + posX);
+        enemyY[i] = int(random(-2000, 2000) + posY);
         enemyRadius[j] = sqrt((((((enemyRadius[j] / 2) * (enemyRadius[j] / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
         //print(j)
         }
