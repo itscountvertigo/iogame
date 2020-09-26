@@ -106,6 +106,16 @@ function draw() { // this function loops every frame
       playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((coinsRadius / 2) * (coinsRadius / 2)) * Math.PI)) / Math.PI) * 2; // kuno and luuk made this to increase player size by volume
     }
   }
+  for (var i = 0; i < coinNum; i++) { // eating coins
+    for (var j = 0; j < enemyNum; j++) {
+      if (dist(enemyX[j] - posX, enemyY[j] - posY, coinsX[i] - posX, coinsY[i] - posY) < enemyRadius[j] / 2) {
+        coinsX[i] = int(random(-2000, 2000) + posX);
+        coinsY[i] = int(random(-2000, 2000) + posY);
+        enemyRadius[j] = sqrt((((((enemyRadius[j] / 2) * (enemyRadius[j] / 2)) * Math.PI) + ((coinsRadius / 2) * (coinsRadius / 2)) * Math.PI)) / Math.PI) * 2; // kuno and luuk made this to increase player size by volume
+        //print(j)
+      }
+    }
+  }
 
   for (var i = 0; i < enemyNum; i++) { // drawing enemies with circle()
     var enemyColorDark = [enemyColor[i][0] - 30, enemyColor[i][1] - 30, enemyColor[i][2] - 30]; // darken original enemy color to make slightly darker border
