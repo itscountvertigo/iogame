@@ -6,23 +6,6 @@ var record;
 var minusRecord;
 var preferenceNumber;
 
-function drawEnemies(enemyX, enemyY, enemyRadius, enemyRed, enemyGreen, enemyBlue) {
-  var enemyColorDark = [enemyRed - 30, enemyGreen - 30, enemyBlue - 30];
-
-  for (i = 0; i < enemyColorDark; i++) {
-    if (enemyColorDark[i] < 0) {
-      enemyColorDark[i] = 0;
-    }
-  }
-
-  strokeWeight(5);
-  stroke(enemyColorDark); // apply enemyColorDark, this makes the border of the circle a slightly darker version of the original for style purposes
-  fill(enemyRed, enemyGreen, enemyBlue);
-  circle(enemyX - posX, enemyY - posY, enemyRadius);
-  fill(0);
-  text(i, enemyX - posX, enemyY - posY); // show i on top of enemy
-}
-
 function updateBots() {
   for (var i = 0; i < enemyX.length; i++) {
     for (var j = 0; j < 360; j++) {
