@@ -64,8 +64,8 @@ function draw() { // this function loops every frame
   console.log("x = ", raycastX, "y = ", raycastY)
 
   // updating posX/posY with raycasting
-  posX -= (raycastY * 5);
-  posY -= (raycastX * 5);
+  posX -= raycastY * speed;
+  posY -= raycastX * speed;
 
   // i have no idea what this does something with moving the grid
   posRasY -= raycastX * speed;
