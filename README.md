@@ -1,6 +1,5 @@
-# IOGAME: Agar.io clone
-This is an Agar.io clone made using p5js.
+# IOGAME: agar.io Clone
 
-It's mostly just [Luukaeap's repo](https://github.com/Lukaeaeap/agar) translated to p5.
+This is an agar.io clone made in p5.js. 
 
-By Anbiya, Luuk, Boris and Kuno
+Some of the code was originally written in Processing 3, which is why we chose p5.
