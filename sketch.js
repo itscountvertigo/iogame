@@ -61,11 +61,11 @@ function setup() {
 function draw() { // this function loops every frame
   background(200);
   raycast(windowWidth/2, windowHeight/2, mouseX, mouseY)
-  //console.log("x = ", raycastX, "y = ", raycastY)
+  console.log("x = ", raycastX, "y = ", raycastY)
 
   // updating posX/posY with raycasting
-  posX -= raycastY * speed;
-  posY -= raycastX * speed;
+  posX -= (raycastY * 5);
+  posY -= (raycastX * 5);
 
   // i have no idea what this does something with moving the grid
   posRasY -= raycastX * speed;
@@ -96,6 +96,7 @@ function draw() { // this function loops every frame
   for (var i = 0; i < foodNum; i++) { // FOOD LOOP
     drawCircle(foodX[i] - posX, foodY[i] - posY, foodRadius, foodColor[i][0], foodColor[i][1], foodColor[i][2]); // draw food
   }
+
   for (var i = 0; i < foodNum; i++) { // FOOD LOOP
     if (dist(windowWidth/2, windowHeight/2, foodX[i] - posX, foodY[i] - posY) < playerRadius / 2) { // check if food is eaten by player
       foodX[i] = int(random(-2000, 2000) + posX);
@@ -103,6 +104,7 @@ function draw() { // this function loops every frame
       playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((foodRadius / 2) * (foodRadius / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
     }
   }
+
   for (var j = 0; j < enemyNum; j++) { // check if food is eaten by enemy
     if (dist(enemyX[j] - posX, enemyY[j] - posY, foodX[i] - posX, foodY[i] - posY) < enemyRadius[j] / 2) {
       foodX[i] = int(random(-2000, 2000) + posX);
@@ -128,6 +130,7 @@ function draw() { // this function loops every frame
       playerRadius = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
     }
   }
+
   for (var j = 0; j < enemyNum; j++) { // check if enemy is eaten by other enemy 
       if (dist(enemyX[j] - posX, enemyY[j] - posY, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[j] / 2) {
         enemyX[i] = int(random(-2000, 2000) + posX);
@@ -136,6 +139,7 @@ function draw() { // this function loops every frame
         //print(j)
         }
       }
+
   for (var i = 0; i < enemyNum; i++) { 
     if(dist(windowWidth/2, windowHeight/2, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[i] / 2 && enemyRadius[i] > playerRadius) { // check if player is being eaten by enemy (RESPAWN!)
       enemyRadius[i] = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
