@@ -64,12 +64,12 @@ function draw() { // this function loops every frame
   console.log("x = ", raycastX, "y = ", raycastY)
 
   // updating posX/posY with raycasting
-  posX -= raycastY * speed;
-  posY -= raycastX * speed;
+  posX -= raycastY * 1 / (((playerRadius / 100) / 2) + 1) * 5; // makes you slower as you grow bigger
+  posY -= raycastX * 1 / (((playerRadius / 100) / 2) + 1) * 5;
 
   // i have no idea what this does something with moving the grid
-  posRasY -= raycastX * speed;
-  posRasX -= raycastY * speed;
+  posRasY -= raycastX * 1 / (((playerRadius / 100) / 2) + 1) * 5;
+  posRasX -= raycastY * 1 / (((playerRadius / 100) / 2) + 1) * 5  ;
   
   if (posRasX > 50) {
     posRasX -= 50;
