@@ -69,7 +69,7 @@ function draw() { // this function loops every frame
 
   // i have no idea what this does something with moving the grid
   posRasY -= raycastX * 1 / (((playerRadius / 100) / 2) + 1) * 5;
-  posRasX -= raycastY * 1 / (((playerRadius / 100) / 2) + 1) * 5  ;
+  posRasX -= raycastY * 1 / (((playerRadius / 100) / 2) + 1) * 5;
   
   if (posRasX > 50) {
     posRasX -= 50;
@@ -158,5 +158,5 @@ function draw() { // this function loops every frame
     }
   }
 
-  drawCircle(windowWidth / 2, windowHeight / 2, playerRadius, 0, 255, 0);
+  drawCircle(windowWidth / 2, windowHeight / 2, playerRadius, 0, 255, 0, playerName);
 }
