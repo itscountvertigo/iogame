@@ -2,8 +2,8 @@ var raycastX;
 var raycastY;
 
 function raycast(pointX, pointY, mouseX, mouseY) {
-    var mouseDistX = pointY - mouseX;
-    var mouseDistY = pointX - mouseY;
+    var mouseDistX = pointX - mouseX;
+    var mouseDistY = pointY - mouseY;
 
     if (mouseDistX > 0 && mouseDistY > 0) { // x greater, y greater
         raycastX = (mouseDistY / (mouseDistY + mouseDistX));
