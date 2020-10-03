@@ -1,4 +1,4 @@
-html, body {
+script {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -11,4 +11,17 @@ canvas {
 body {
   height: 100%;
   overflow: hidden;
+}
+
+.menu {
+  display: block;
+  position: absolute;
+  width: 100px;
+
+}
+.form {
+  display: block;
+  position: absolute;
+  width: 100px;
+
 }
