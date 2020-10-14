@@ -10,6 +10,7 @@ var posDrawY;
 var playerRadius = 50;
 var multi = 2;
 var toobig = 125;
+var playerName = 'player';
 
 // food variables/arrays
 var foodNum = 300;
@@ -61,7 +62,7 @@ function setup() {
 function draw() { // this function loops every frame
   background(200);
   raycast(windowWidth/2, windowHeight/2, mouseX, mouseY)
-  console.log("x = ", raycastX, "y = ", raycastY)
+  //console.log("x = ", raycastX, "y = ", raycastY)
 
   // updating posX/posY with raycasting
   posX -= raycastY * 1 / (((playerRadius / 100) / 2) + 1) * 5; // makes you slower as you grow bigger
@@ -94,7 +95,7 @@ function draw() { // this function loops every frame
   }
 
   for (var i = 0; i < foodNum; i++) { // FOOD LOOP
-    drawCircle(foodX[i] - posX, foodY[i] - posY, foodRadius, foodColor[i][0], foodColor[i][1], foodColor[i][2]); // draw food
+    drawCircle(foodX[i] - posX, foodY[i] - posY, foodRadius, foodColor[i][0], foodColor[i][1], foodColor[i][2], ''); // draw food
   }
 
   for (var i = 0; i < foodNum; i++) { // FOOD LOOP
@@ -122,7 +123,7 @@ function draw() { // this function loops every frame
     }
 
   for (var i = 0; i < enemyNum; i++) {  // ENEMY LOOP
-    drawCircle(enemyX[i] - posX, enemyY[i] - posY, enemyRadius[i], enemyColor[i][0], enemyColor[i][1], enemyColor[i][2]);
+    drawCircle(enemyX[i] - posX, enemyY[i] - posY, enemyRadius[i], enemyColor[i][0], enemyColor[i][1], enemyColor[i][2], str(i));
 
     if (dist(width/2, height/2, enemyX[i] - posX, enemyY[i] - posY) < playerRadius / 2 && playerRadius > enemyRadius[i]) { // check if enemy is eaten by player
       enemyX[i] = int(random(-2000, 2000) + posX);
