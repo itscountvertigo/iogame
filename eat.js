@@ -1,10 +1,8 @@
-function eat(eaterx, eatery, eaterradius, eatenx, eateny,){
-    for (var i = 0; i < eaterx.length; i++) { // check if food is eaten by enemy
-        if (dist(enemyX[i] - posX, enemyY[j] - posY, eatenx[i] - posX, eateny[i] - posY) < eaterradius[j] / 2) {
-          eatenx[i] = int(random(-2000, 2000) + posX);
-          eateny[i] = int(random(-2000, 2000) + posY);
-          eaterradius[j] = sqrt((((((eaterradius[j] / 2) * (eaterradius[j] / 2)) * Math.PI) + ((eatenradius / 2) * (eatenradius / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
-          //print(j)
-          }
-        }
+function eat(eaterX, eaterY, eaterRadius, eatenX, eatenY, eatenRadius){
+  if (dist(eatenX, eatenY, eaterX, eatenY) < eaterRadius && eaterRadius > eatenRadius) {
+    var newRadius = sqrt((((((eaterRadius / 2) * (eaterRadius / 2)) * Math.PI) + ((eatenRadius / 2) * (eatenRadius / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
+    return newRadius;
+  } else {
+    return null;
+  }
 }
