@@ -10,7 +10,6 @@ var posDrawY;
 var playerRadius = 50;
 var multi = 2;
 var toobig = 125;
-var playerName = 'player';
 
 // food variables/arrays
 var foodNum = 300;
@@ -27,7 +26,13 @@ var enemyY = [];
 var enemyRadius = [];
 
 var enemyColor = [];
+
+// html variables
 var startBtn = document.getElementById('startBtn');
+
+var playerName = document.getElementById('guest-name').value;
+
+startBtn.addEventListener("click", initialize());
 
 function windowResized() {
   console.log('resized');
@@ -47,8 +52,8 @@ function setup() {
   posRasX = 0;
   posRasY = 0;
 }
-function initalize() {
-  startBtn.style.display = 'none';
+function initialize() {
+  //startBtn.style.display = 'none';
   console.log("hallo testerman");
   background(200);
 

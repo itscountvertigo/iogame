@@ -15,11 +15,22 @@
 </head>
 
 <body>
-  <button type="button" id="startBtn" onclick="initalize()">START</button>
+  <div id="main-ui">
+    <h1 id="agamio">Agam.io</h1>
+    <input id="guest-name" placeholder="Nickname" maxlength="15" autofocus="autofocus">
+    <button id="startBtn">Start</button>
+    <p id="controls-text">Move your mouse to control your cell<br>Eat smaller cells, avoid larger ones. Good luck!</p>
+    
+    <div id="login-register-container">
+      <button id="login-btn">Login</button>
+      <button id="register-btn">Register</button>
+    </div>
+
   <script src="sketch.js"></script>
   <script src="enemies.js"></script>
   <script src="drawing.js"></script>
   <script src="raycast.js"></script>
+
 </body>
 
 </html>
