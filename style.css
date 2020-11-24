@@ -27,12 +27,11 @@ body {
 }
 
 #startBtn {
+  background-color: rgb(255, 174, 0);
   position: fixed;
   display: block;
   top: 50%;
   left: 50%;
-  /* width: 200px;
-  height: 50px; */
   width: 200px;
   height: 24px;
   font-size: 20px;
@@ -40,3 +39,7 @@ body {
   margin-top: -12px;
   
 }
+#startBtn:hover {
+  background-color: rgb(255,0,0);
+}
+
