@@ -24,11 +24,6 @@ body {
   display: block;
   position: absolute;
   width: 100px;
-
-}
-
-.btn {
-  text-align: center;
 }
 
 #main-ui {
@@ -54,6 +49,7 @@ body {
   border-radius: 4px;
 }
 
+/* deze chaos hieronder zorgt ervoor dat de login en register in het midden komen*/
 #login-register-container {
   text-align: center;
 }
@@ -64,11 +60,13 @@ body {
   margin-left: 5px;
   margin-right: 5px;
 }
+/* deze chaos hierboven zorgt ervoor dat de login en register in het midden komen*/
 
 #startBtn {
   width: 200px;
   margin-left: auto;
   margin-right: auto;
+  font-weight: bold;
 }
 
 #guest-name {
