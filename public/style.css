@@ -111,3 +111,7 @@ body {
   padding-top: 0px;
 
 }
+
+#signup, #signin {
+  display: hidden;
+}
