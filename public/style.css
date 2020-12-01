@@ -54,6 +54,17 @@ body {
   border-radius: 4px;
 }
 
+#login-register-container {
+  text-align: center;
+}
+
+#login-btn, #register-btn {
+  display: inline-block;
+
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 #startBtn {
   width: 200px;
   margin-left: auto;
@@ -65,21 +76,40 @@ body {
   width: 150px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 20px;
   border-radius: 2px;
   border-style: solid;
   border-color: #A2A2A2;
+  padding: 4px;
 }
 
 #agamio {
+  font-size: 40px;
+  font-weight: bold;
   text-align: center;
   display: block;
-  padding-top: 5px;
+  padding-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  
 }
 
 #controls-text {
   text-align: center;
   color: #7d7d7d;
   font-size: 10px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#welcome-text {
+  text-align: center;
+  color: #7d7d7d;
+  font-size: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0px;
+
 }
