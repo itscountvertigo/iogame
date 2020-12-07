@@ -28,10 +28,7 @@ var enemyRadius = [];
 var enemyColor = [];
 
 // html variables
-var startBtn = document.getElementById('startBtn');
-
 var playerName = document.getElementById('guest-name').value;
-
 startBtn.addEventListener("click", initialize());
 
 function windowResized() {
@@ -52,6 +49,7 @@ function setup() {
   posRasX = 0;
   posRasY = 0;
 }
+
 function initialize() {
   //startBtn.style.display = 'none';
   console.log("hallo testerman");
@@ -69,6 +67,9 @@ function initialize() {
     append(enemyColor, [random(255), random(255), random(255)]); // makes this an array of arrays
     append(enemyRadius, random(50, 150));
   }
+  
+  guestUI = document.getElementById('main-ui');
+  guestUI.style.display = 'none'
   loop()
 }
 
