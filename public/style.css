@@ -28,12 +28,16 @@ body {
 
 #main-ui {
   display: block;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto; 
   height: 300px;
   width: 300px;
   background-color: #ffffff;
   border-radius: 10px;
   border: 4px solid #54c800; /* Green */
+
+  margin-top: 180px;
+  margin-bottom: auto;
 }
 
 #startBtn, #login-btn, #register-btn {
@@ -86,7 +90,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border-radius: 2px;
   border-style: solid;
   border-color: #A2A2A2;
@@ -98,9 +102,11 @@ body {
   font-weight: bold;
   text-align: center;
   display: block;
-  padding-top: 30px;
+  padding-top: 15px;
   margin-left: auto;
   margin-right: auto;
+
+  margin-bottom: 20px;
   
 }
 
@@ -121,4 +127,5 @@ body {
   padding-right: 10px;
   padding-top: 0px;
 
+  margin-bottom: 5px;
 }
