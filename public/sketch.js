@@ -28,8 +28,7 @@ var enemyRadius = [];
 var enemyColor = [];
 
 // html variables
-var playerName = document.getElementById('guest-name').value;
-startBtn.addEventListener("click", initialize());
+//var playerName = document.getElementById('guest-name').value;
 
 function windowResized() {
   console.log('resized');
@@ -51,7 +50,8 @@ function setup() {
 }
 
 function initialize() {
-  //startBtn.style.display = 'none';
+  playerName = document.getElementById('guest-name').value;
+
   console.log("hallo testerman");
   background(200);
 
