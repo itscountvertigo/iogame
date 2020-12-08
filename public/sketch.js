@@ -30,6 +30,8 @@ var enemyColor = [];
 // html variables
 //var playerName = document.getElementById('guest-name').value;
 
+guestUI = document.getElementById('main-ui');
+
 function windowResized() {
   console.log('resized');
   resizeCanvas(windowWidth, windowHeight);
@@ -52,7 +54,7 @@ function setup() {
 function initialize() {
   playerName = document.getElementById('guest-name').value;
 
-  console.log("hallo testerman");
+  console.log("Initialize() called, starting game");
   background(200);
 
   for (var i = 0; i < foodNum; i++) { // add random values to food arrays (random x, y, color and radius)
@@ -68,7 +70,6 @@ function initialize() {
     append(enemyRadius, random(50, 150));
   }
   
-  guestUI = document.getElementById('main-ui');
   guestUI.style.display = 'none'
   loop()
 }
@@ -157,10 +158,11 @@ function draw() { // this function loops every frame
   for (var i = 0; i < enemyNum; i++) {
     if (dist(windowWidth / 2, windowHeight / 2, enemyX[i] - posX, enemyY[i] - posY) < enemyRadius[i] / 2 && enemyRadius[i] > playerRadius) { // check if player is being eaten by enemy (RESPAWN!)
       enemyRadius[i] = sqrt((((((playerRadius / 2) * (playerRadius / 2)) * Math.PI) + ((enemyRadius[i] / 2) * (enemyRadius[i] / 2)) * Math.PI)) / Math.PI) * 2; // increase size by volume
-      alert("You dead boy");
+      guestUI.style.display = 'block';
       posX = 0;
       posY = 0;
       playerRadius[i] = 50;
+      noLoop();
     }
   }
 
