@@ -1,0 +1,23 @@
+{
+  "name": "iogame",
+  "version": "1.0.0",
+  "description": "agar.io clone",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itscountvertigo/iogame.git"
+  },
+  "author": "anbiya popal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itscountvertigo/iogame/issues"
+  },
+  "homepage": "https://github.com/itscountvertigo/iogame#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.4"
+  }
+}
