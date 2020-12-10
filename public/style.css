@@ -40,63 +40,6 @@ body {
   margin-bottom: auto;
 }
 
-#startBtn, #login-btn, #register-btn {
-  display: block;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  color: #fff;
-  border: 1px solid transparent;
-  background-color: #54c800; 
-  border-radius: 4px;
-
-  border: 2px solid #54c800; /* Green */
-  transition-duration: 0.4s;
-
-}
-
-#startBtn:hover, #login-btn:hover, #register-btn:hover {
-  background-color: white;
-  color: #54c800;  
-  border: 2px solid #54c800; /* Green */
-
-}
-
-/* deze chaos hieronder zorgt ervoor dat de login en register in het midden komen*/
-#login-register-container {
-  text-align: center;
-}
-
-#login-btn, #register-btn {
-  display: inline-block;
-
-  margin-left: 5px;
-  margin-right: 5px;
-}
-/* deze chaos hierboven zorgt ervoor dat de login en register in het midden komen*/
-
-#startBtn {
-  width: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: bold;
-}
-
-#guest-name {
-  display: block;
-  width: 150px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0px;
-  margin-bottom: 15px;
-  border-radius: 2px;
-  border-style: solid;
-  border-color: #A2A2A2;
-  padding: 4px;
-}
-
 #agamio {
   font-size: 40px;
   font-weight: bold;
@@ -107,7 +50,6 @@ body {
   margin-right: auto;
 
   margin-bottom: 20px;
-  
 }
 
 #controls-text {
@@ -129,3 +71,72 @@ body {
 
   margin-bottom: 5px;
 }
+
+#guest-ui {
+  display: block;
+}
+
+#login-ui {
+  display: none;
+}
+
+#register-ui {
+  display: none;
+}
+
+input {
+  display: block;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  border-style: solid;
+  border-color: #A2A2A2;
+  padding: 4px;
+}
+
+/* BUTTONS */
+
+button {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  color: #fff;
+  border: 1px solid transparent;
+  background-color: #54c800; 
+  border-radius: 4px;
+
+  border: 2px solid #54c800; /* Green */
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  background-color: white;
+  color: #54c800;  
+  border: 2px solid #54c800; /* Green */
+}
+
+#startBtn {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+}
+
+/* deze chaos hieronder zorgt ervoor dat de login en register in het midden komen*/
+#center-btn-container {
+  text-align: center;
+}
+
+.center-btn {
+  display: inline-block;
+
+  margin-left: 5px;
+  margin-right: 5px;
+}
+/* deze chaos hierboven zorgt ervoor dat de login en register in het midden komen*/

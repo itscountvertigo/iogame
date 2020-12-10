@@ -18,22 +18,45 @@
 
 <body>
   <div id="main-ui">
-    <h1 id="agamio">Agam.io</h1>
-    <input id="guest-name" placeholder="Nickname" maxlength="15" autofocus="autofocus">
-    <button id="startBtn" onclick="initialize()">Start</button>
-    <p id="controls-text">Move your mouse to control your cell<br>Eat smaller cells, avoid larger ones. Good luck!</p>
-    
-    <div id="login-register-container">
-      <button id="login-btn">Login</button>
-      <button id="register-btn">Register</button>
+    <div id="guest-ui">
+      <h1 id="agamio">Agam.io</h1>
+      <input id="guest-name" placeholder="Nickname" maxlength="15" autofocus="autofocus">
+      <button id="startBtn" onclick="initialize()">Start</button>
+      <p id="controls-text">Move your mouse to control your cell<br>Eat smaller cells, avoid larger ones. Good luck!</p>
+      
+      <div id="center-btn-container">
+        <button class="center-btn" id="login-btn" onclick="loginBtn()">Login</button>
+        <button class="center-btn" id="register-btn" onclick="registerBtn()">Register</button>
+      </div>
     </div>
-  </div>
+    <div id="login-ui">
+      <h1 id="agamio">Agam.io</h1>
 
-  <script src="sketch.js"></script>
-  <script src="enemies.js"></script>
-  <script src="drawing.js"></script>
-  <script src="raycast.js"></script>
+      <input id="username" placeholder="Username">
+      <input id="password" placeholder="Password">
 
-</body>
+      <div id="center-btn-container">
+        <button class="center-btn" id="guest-btn" onclick="guestBtn()">Back</button>
+        <button class="center-btn" id="register-btn" onclick="registerBtn()">Register</button>
+      </div>
 
+    </div>
+      <div id="register-ui">
+        <h1 id="agamio">Agam.io</h1>
+
+        <input id="email" placeholder="Email">
+        <input id="username" placeholder="Username">
+        <input id="password" placeholder="Password">
+
+        <div id="center-btn-container">
+          <button class="center-btn" id="login-btn" onclick="loginBtn()">Login</button>
+          <button class="center-btn" id="guest-btn" onclick="guestBtn()">Back</button>
+        </div>
+      </div>
+    </div>
+  </body>
+<script src="sketch.js"></script>
+<script src="enemies.js"></script>
+<script src="drawing.js"></script>
+<script src="raycast.js"></script>
 </html>

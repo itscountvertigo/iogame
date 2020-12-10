@@ -28,11 +28,35 @@ var enemyRadius = [];
 var enemyColor = [];
 
 // html variables
-//var playerName = document.getElementById('guest-name').value;
 
-guestUI = document.getElementById('main-ui');
+mainUI = document.getElementById('main-ui');
+
+guestUI = document.getElementById('guest-ui');
+loginUI = document.getElementById('login-ui');
+registerUI = document.getElementById('register-ui');
 
 var socket;
+
+function loginButton() {
+  guestUI.style.display = 'none';
+  registerUI.style.display = 'none';
+
+  loginUI.style.display = 'block';
+}
+
+function registerButton() {
+  guestUI.style.display = 'none';
+  loginUI.style.display = 'none';
+
+  registerUI.style.display = 'block';
+}
+
+function guestButton() {
+  loginUI.style.display = 'none';
+  registerUI.style.display = 'none';
+
+  guestUI.style.display = 'block';
+}
 
 function windowResized() {
   console.log('resized');
@@ -73,7 +97,7 @@ function initialize() {
   
   socket = io.connect('http://localhost:3000');
 
-  guestUI.style.display = 'none'
+  mainUI.style.display = 'none'
   loop()
 }
 
