@@ -32,6 +32,8 @@ var enemyColor = [];
 
 guestUI = document.getElementById('main-ui');
 
+var socket;
+
 function windowResized() {
   console.log('resized');
   resizeCanvas(windowWidth, windowHeight);
@@ -55,7 +57,6 @@ function initialize() {
   playerName = document.getElementById('guest-name').value;
 
   console.log("Initialize() called, starting game");
-  background(200);
 
   for (var i = 0; i < foodNum; i++) { // add random values to food arrays (random x, y, color and radius)
     append(foodX, random(-2000, 2000));
@@ -64,12 +65,14 @@ function initialize() {
   }
 
   for (var i = 0; i < enemyNum; i++) { // add random values to enemy arrays (random x, y and color)
-    append(enemyX, random(-2000, 2000));
-    append(enemyY, random(-2000, 2000));
-    append(enemyColor, [random(255), random(255), random(255)]); // makes this an array of arrays
-    append(enemyRadius, random(50, 150));
+    //append(enemyX, random(-2000, 2000));
+    //append(enemyY, random(-2000, 2000));
+    //append(enemyColor, [random(255), random(255), random(255)]); // makes this an array of arrays
+    //append(enemyRadius, random(50, 150));
   }
   
+  socket = io.connect('http://localhost:3000');
+
   guestUI.style.display = 'none'
   loop()
 }
@@ -137,7 +140,7 @@ function draw() { // this function loops every frame
   }
 
   for (var i = 0; i < enemyNum; i++) {  // ENEMY LOOP
-    drawCircle(enemyX[i] - posX, enemyY[i] - posY, enemyRadius[i], enemyColor[i][0], enemyColor[i][1], enemyColor[i][2], str(i));
+    //drawCircle(enemyX[i] - posX, enemyY[i] - posY, enemyRadius[i], enemyColor[i][0], enemyColor[i][1], enemyColor[i][2], str(i));
 
     if (dist(width / 2, height / 2, enemyX[i] - posX, enemyY[i] - posY) < playerRadius / 2 && playerRadius > enemyRadius[i]) { // check if enemy is eaten by player
       enemyX[i] = int(random(-2000, 2000) + posX);
@@ -175,4 +178,18 @@ function draw() { // this function loops every frame
   }
 
   drawCircle(windowWidth / 2, windowHeight / 2, playerRadius, 0, 255, 0, playerName);
+
+  var data = {
+    x: posX,
+    y: posY,
+    name: playerName,
+    size: playerRadius
+  }
+  socket.emit('coordinates', data);
+
+  socket.on('coordinates', drawEnemy);
+
+  function drawEnemy(data) {
+    drawCircle(data.x - posX, data.y - posY, data.size[i], 100, 100, 100, data.playerName);
+  }
 }
