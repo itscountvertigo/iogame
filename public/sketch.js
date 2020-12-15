@@ -37,27 +37,6 @@ registerUI = document.getElementById('register-ui');
 
 var socket;
 
-function loginButton() {
-  guestUI.style.display = 'none';
-  registerUI.style.display = 'none';
-
-  loginUI.style.display = 'block';
-}
-
-function registerButton() {
-  guestUI.style.display = 'none';
-  loginUI.style.display = 'none';
-
-  registerUI.style.display = 'block';
-}
-
-function guestButton() {
-  loginUI.style.display = 'none';
-  registerUI.style.display = 'none';
-
-  guestUI.style.display = 'block';
-}
-
 function windowResized() {
   console.log('resized');
   resizeCanvas(windowWidth, windowHeight);
